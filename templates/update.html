@@ -1,0 +1,71 @@
+{% extends 'master.html' %}
+{% include 'header.html' %}
+
+{% block title %} Modifier l'étudiant {% endblock %} 
+
+{% block body %}
+
+<div class="container">
+    <form method="post" action="/update/{{ student.id }}">
+        <table class="table">
+            <tr>
+                <td>Nom</td>
+                <td><input type="text" name="first_name" class="form-control" value="{{ student.first_name }}" required></td>
+            </tr>
+            
+            <tr>
+                <td>Prénom</td>
+                <td><input type="text" name="last_name" class="form-control" value="{{ student.last_name }}" required></td>
+            </tr>
+
+            <tr>
+                <td>Email</td>
+                <td><input type="email" name="email" class="form-control" value="{{ student.email }}" required></td>
+            </tr>
+
+            <tr>
+                <td>Mot de passe</td>
+                <td><input type="password" name="password" class="form-control" value="{{ student.password }}" required></td>
+            </tr>
+
+            <tr>
+                <td>Genre</td>
+                <td>
+                    Homme: <input type="radio" name="gender" value="homme" {% if student.gender == 'homme' %}checked{% endif %} required>
+                    Femme: <input type="radio" name="gender" value="femme" {% if student.gender == 'femme' %}checked{% endif %} required>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Niveau</td>
+                <td>
+                    L1: <input type="checkbox" name="hobbies" value="L1" {% if 'L1' in student.hobbies %}checked{% endif %}>
+                    L2: <input type="checkbox" name="hobbies" value="L2" {% if 'L2' in student.hobbies %}checked{% endif %}>
+                    L3: <input type="checkbox" name="hobbies" value="L3" {% if 'L3' in student.hobbies %}checked{% endif %}>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Classe</td>
+                <td>
+                    <select name="country" class="form-control" required>
+                        <option value="TTL" {% if student.country == 'TTL' %}selected{% endif %}>TTL</option>
+                        <option value="CPD" {% if student.country == 'CPD' %}selected{% endif %}>CPD</option>
+                        <option value="CDSD" {% if student.country == 'CDSD' %}selected{% endif %}>CDSD</option>
+                        <option value="GLRS" {% if student.country == 'GLRS' %}selected{% endif %}>GLRS</option>
+                        <option value="MAE" {% if student.country == 'MAE' %}selected{% endif %}>MAE</option>
+                        <option value="IAGE" {% if student.country == 'IAGE' %}selected{% endif %}>IAGE</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <input type="submit" name="submit" value="Valider" class="btn btn-primary">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+{% endblock %}

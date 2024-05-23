@@ -1,0 +1,71 @@
+{% extends 'master.html' %}
+{% include 'header.html' %}
+
+{% block title %} Ajouter Etudiant {% endblock %} 
+
+{% block body %}
+
+   <div class="container">
+      <form method="post" action="/create">
+        <table class="table">
+            <tr>
+                <td>Nom</td>
+                <td><input type="text" name="first_name" class="form-control" required></td>
+            </tr>
+            
+            <tr>
+                <td>Prenom</td>
+                <td><input type="text" name="last_name" class="form-control" required></td>
+            </tr>
+
+            <tr>
+                <td>Email</td>
+                <td><input type="email" name="email" class="form-control" required></td>
+            </tr>
+
+            <tr>
+                <td>Mot de passe</td>
+                <td><input type="password" name="password" class="form-control" required></td>
+            </tr>
+
+            <tr>
+                <td>Genre</td>
+                <td>
+                    Homme: <input type="radio" name="gender" value="homme" required>
+                    Femme: <input type="radio" name="gender" value="femme" required>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Niveau</td>
+                <td>
+                    L1: <input type="checkbox" name="hobbies" value="L1">
+                    L2: <input type="checkbox" name="hobbies" value="L2">
+                    L3: <input type="checkbox" name="hobbies" value="L3">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Classe</td>
+                <td>
+                    <select name="country" class="form-control" required>
+                        <option value="TTL">TTL</option>
+                        <option value="CPD">CPD</option>
+                        <option value="CDSD">CDSD</option>
+                        <option value="GLRS">GLRS</option>
+                        <option value="MAE">MAE</option>
+                        <option value="IAGE">IAGE</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <input type="submit" name="submit" value="Ajouter" class="btn btn-primary">
+                </td>
+            </tr>
+        </table>
+      </form>
+   </div>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'master.html' %}
+{% include 'header.html' %}
+
+{% block title %} Liste des Étudiants {% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div>
+        <div class="col-md-12">Liste des étudiants</div>
+    </div>
+    <div>
+        <form method="get" action="{{ url_for('search') }}">
+            <div class="input-group mb-3">
+                <input type="text" name="query" placeholder="Rechercher un étudiant" value="{{ query if query else '' }}" class="form-control">
+                <div class="input-group-append">
+                    <input type="submit" value="Rechercher" class="btn btn-primary">
+                    <a href="{{ url_for('RetrieveList') }}" class="btn btn-secondary ml-2">Réinitialiser</a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div>
+        <table class="table">
+            <thead style="background-color:brown;color:aliceblue;">
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Email</th>
+                <th>Genre</th>
+                <th>Niveau</th>
+                <th>Filière</th>
+                <th>Actions</th>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ student.first_name }}</td>
+                    <td>{{ student.last_name }}</td>
+                    <td>{{ student.email }}</td>
+                    <td>{{ student.gender }}</td>
+                    <td>{{ student.hobbies }}</td>
+                    <td>{{ student.country }}</td>
+                    <td>
+                        <a href="{{ url_for('update', id=student.id) }}" class="btn btn-primary">Modifier</a>
+                        <form action="{{ url_for('delete', id=student.id) }}" method="post" style="display:inline;">
+                            <input type="submit" value="Supprimer" class="btn btn-danger">
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
